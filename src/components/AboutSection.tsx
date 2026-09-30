@@ -1,28 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { SectionHeader } from './SectionHeader';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { BookOpen, GraduationCap, MapPin, Laptop, Terminal, Sparkles, CheckCircle2, Camera, Upload, RotateCcw } from 'lucide-react';
-import { useProfilePhoto } from '../context/ProfilePhotoContext';
+import { BookOpen, GraduationCap, MapPin, Laptop, Terminal, Sparkles, CheckCircle2 } from 'lucide-react';
+import officialPhoto from '../assets/images/tanvir_official_photo.jpg';
 
 export const AboutSection: React.FC = () => {
-  const { photoUrl, updatePhoto, resetPhoto, isCustom } = useProfilePhoto();
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [isUploading, setIsUploading] = useState(false);
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      try {
-        setIsUploading(true);
-        await updatePhoto(file);
-      } catch (err) {
-        console.error('Failed to update photo:', err);
-      } finally {
-        setIsUploading(false);
-      }
-    }
-  };
-
   return (
     <section id="about" className="relative py-16 md:py-24">
       {/* Background glow */}
@@ -50,7 +32,7 @@ export const AboutSection: React.FC = () => {
                   <div className="absolute bottom-12 right-6 w-40 h-40 bg-[#8b5cf6]/20 rounded-full blur-xl pointer-events-none" />
 
                   <img
-                    src={photoUrl}
+                    src={officialPhoto}
                     alt="Md. Tanvir Hossain - Computer Science & Engineering Student"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 relative z-10"
                     referrerPolicy="no-referrer"
@@ -69,41 +51,6 @@ export const AboutSection: React.FC = () => {
                   <div className="absolute top-3 right-3 bg-[#0d1224]/90 backdrop-blur-md border border-[#16f2b3]/50 rounded-full px-3 py-1 flex items-center gap-1.5 shadow-lg pointer-events-none z-20">
                     <span className="w-2 h-2 rounded-full bg-[#16f2b3] animate-pulse" />
                     <span className="text-[11px] font-mono text-[#16f2b3] font-semibold">Active Student</span>
-                  </div>
-
-                  {/* Hidden file input for photo upload */}
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={handleFileChange}
-                    accept="image/*"
-                    className="hidden"
-                    id="profile-photo-upload"
-                  />
-
-                  {/* Upload / Change Photo button */}
-                  <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5">
-                    <button
-                      type="button"
-                      onClick={() => fileInputRef.current?.click()}
-                      disabled={isUploading}
-                      className="bg-[#0d1224]/90 hover:bg-[#16f2b3] text-[#16f2b3] hover:text-[#0d1224] backdrop-blur-md border border-[#16f2b3]/60 rounded-full px-2.5 py-1 flex items-center gap-1.5 text-[11px] font-mono font-medium transition-all shadow-lg cursor-pointer group/btn"
-                      title="Upload and use your exact photo (e.g. download.png)"
-                    >
-                      <Camera className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />
-                      <span>{isUploading ? 'Updating...' : isCustom ? 'Change Photo' : 'Upload Photo'}</span>
-                    </button>
-
-                    {isCustom && (
-                      <button
-                        type="button"
-                        onClick={resetPhoto}
-                        className="bg-[#0d1224]/90 hover:bg-rose-500/20 text-slate-400 hover:text-rose-300 backdrop-blur-md border border-[#1b2c68] rounded-full p-1 transition-all shadow-lg cursor-pointer"
-                        title="Reset to default photo"
-                      >
-                        <RotateCcw className="w-3.5 h-3.5" />
-                      </button>
-                    )}
                   </div>
 
                   {/* Floating Tag at Bottom */}

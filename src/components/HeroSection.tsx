@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Github, Linkedin, Mail, ArrowRight, Copy, Check, Terminal, Sparkles, MapPin, GraduationCap } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { useProfilePhoto } from '../context/ProfilePhotoContext';
+import officialPhoto from '../assets/images/tanvir_official_photo.jpg';
 
 export const HeroSection: React.FC = () => {
-  const { photoUrl } = useProfilePhoto();
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState<'profile' | 'interests'>('profile');
 
@@ -73,10 +72,16 @@ export const HeroSection: React.FC = () => {
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#16f2b3] via-pink-500 to-[#8b5cf6] rounded-full blur-sm opacity-75 group-hover/avatar:opacity-100 transition duration-300" />
                 <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-[#16f2b3] bg-[#0d1224] shadow-xl">
                   <img
-                    src={photoUrl}
+                    src={officialPhoto}
                     alt="Md. Tanvir Hossain"
                     className="w-full h-full object-cover object-top group-hover/avatar:scale-110 transition-transform duration-300"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.src.includes('tanvir_official_photo.jpg') && !target.src.includes('tanvir_photo.jpg')) {
+                        target.src = '/tanvir_official_photo.jpg';
+                      }
+                    }}
                   />
                 </div>
                 <span

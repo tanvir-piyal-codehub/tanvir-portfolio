@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { useProfilePhoto } from '../context/ProfilePhotoContext';
+import officialPhoto from '../assets/images/tanvir_official_photo.jpg';
 
 interface NavItem {
   label: string;
@@ -20,7 +20,6 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 export const Navbar: React.FC = () => {
-  const { photoUrl } = useProfilePhoto();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -88,10 +87,16 @@ export const Navbar: React.FC = () => {
           >
             <div className="w-8 h-8 rounded-full overflow-hidden border border-[#16f2b3]/80 p-[1px] bg-gradient-to-r from-[#16f2b3] to-[#8b5cf6] shrink-0 group-hover:scale-105 transition-transform">
               <img
-                src={photoUrl}
+                src={officialPhoto}
                 alt="Md. Tanvir Hossain"
                 className="w-full h-full object-cover object-top rounded-full"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('tanvir_official_photo.jpg') && !target.src.includes('tanvir_photo.jpg')) {
+                    target.src = '/tanvir_official_photo.jpg';
+                  }
+                }}
               />
             </div>
             <span className="text-[#16f2b3] group-hover:text-pink-400 transition-colors font-mono hidden sm:inline">
