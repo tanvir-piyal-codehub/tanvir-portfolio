@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
-import defaultPhoto from '../assets/images/tanvir_official_photo.jpg';
 
-// Default to Tanvir's real GitHub profile photo
-const DEFAULT_PHOTO = defaultPhoto;
+// Default to Tanvir's official photo from public directory
+const DEFAULT_PHOTO = '/tanvir_official_photo.jpg';
 
 interface ProfilePhotoContextType {
   photoUrl: string;
