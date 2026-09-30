@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import officialPhoto from '../assets/images/tanvir_official_photo.jpg';
 
 interface NavItem {
   label: string;
@@ -85,19 +84,15 @@ export const Navbar: React.FC = () => {
             onClick={(e) => handleNavClick(e, '#home')}
             className="group flex items-center gap-2.5 text-sm sm:text-base md:text-lg font-bold tracking-wider text-slate-100 transition-colors"
           >
-            <div className="w-8 h-8 rounded-full overflow-hidden border border-[#16f2b3]/80 p-[1px] bg-gradient-to-r from-[#16f2b3] to-[#8b5cf6] shrink-0 group-hover:scale-105 transition-transform">
+            <div className="w-8 h-8 rounded-full overflow-hidden border border-[#16f2b3]/80 p-[1px] bg-gradient-to-r from-[#16f2b3] to-[#8b5cf6] shrink-0 group-hover:scale-105 transition-transform flex items-center justify-center bg-[#0d1224] text-[10px] font-mono font-bold text-[#16f2b3] relative">
               <img
-                src={officialPhoto}
+                src="/profile.jpg"
                 alt="Md. Tanvir Hossain"
-                className="w-full h-full object-cover object-top rounded-full"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (!target.src.includes('tanvir_official_photo.jpg') && !target.src.includes('tanvir_photo.jpg')) {
-                    target.src = '/tanvir_official_photo.jpg';
-                  }
-                }}
+                className="absolute inset-0 w-full h-full object-cover object-top rounded-full hidden z-10"
+                onLoad={(e) => e.currentTarget.classList.remove('hidden')}
+                onError={(e) => e.currentTarget.classList.add('hidden')}
               />
+              TH
             </div>
             <span className="text-[#16f2b3] group-hover:text-pink-400 transition-colors font-mono hidden sm:inline">
               &lt;

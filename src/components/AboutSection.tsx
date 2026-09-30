@@ -1,8 +1,7 @@
 import React from 'react';
 import { SectionHeader } from './SectionHeader';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { BookOpen, GraduationCap, MapPin, Laptop, Terminal, Sparkles, CheckCircle2 } from 'lucide-react';
-import officialPhoto from '../assets/images/tanvir_official_photo.jpg';
+import { BookOpen, GraduationCap, MapPin, Laptop, Terminal, Sparkles, CheckCircle2, Code2 } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   return (
@@ -25,25 +24,45 @@ export const AboutSection: React.FC = () => {
               <div className="absolute -inset-1.5 bg-gradient-to-r from-[#16f2b3]/40 via-pink-500/25 to-[#8b5cf6]/40 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-500" />
               
               <div className="relative rounded-2xl border border-[#1b2c68a0] bg-[#10172d] p-6 shadow-2xl overflow-hidden">
-                {/* Image container */}
-                <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden border border-[#1b2c68] mb-5 bg-gradient-to-b from-[#172142] via-[#0f172a] to-[#090d1c] shadow-inner group">
+                {/* Visual Identity / Profile container */}
+                <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden border border-[#1b2c68] mb-5 bg-gradient-to-b from-[#172142] via-[#0f172a] to-[#090d1c] shadow-inner group flex flex-col items-center justify-center p-6 text-center">
                   {/* Subtle Studio Lighting Gradients behind subject */}
                   <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#16f2b3]/15 rounded-full blur-2xl pointer-events-none" />
                   <div className="absolute bottom-12 right-6 w-40 h-40 bg-[#8b5cf6]/20 rounded-full blur-xl pointer-events-none" />
 
+                  {/* Auto-detected user photo: if you put profile.jpg in the public/ folder, it displays automatically! */}
                   <img
-                    src={officialPhoto}
-                    alt="Md. Tanvir Hossain - Computer Science & Engineering Student"
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 relative z-10"
-                    referrerPolicy="no-referrer"
+                    src="/profile.jpg"
+                    alt="Md. Tanvir Hossain"
+                    className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 z-10 hidden"
+                    onLoad={(e) => {
+                      e.currentTarget.classList.remove('hidden');
+                    }}
                     onError={(e) => {
-                      const target = e.currentTarget;
-                      if (!target.src.includes('tanvir_official_photo.jpg') && !target.src.includes('tanvir_photo.jpg')) {
-                        target.src = '/tanvir_official_photo.jpg';
-                      }
+                      e.currentTarget.classList.add('hidden');
                     }}
                   />
-                  
+
+                  {/* Developer Monogram Card (Shown by default when no profile.jpg is in public/) */}
+                  <div className="relative z-0 flex flex-col items-center justify-center py-6">
+                    <div className="relative mb-4">
+                      <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-tr from-[#16f2b3]/20 via-[#8b5cf6]/20 to-pink-500/20 border-2 border-[#16f2b3]/60 flex items-center justify-center shadow-2xl backdrop-blur-sm group-hover:scale-105 group-hover:border-[#16f2b3] transition-all">
+                        <span className="text-3xl sm:text-4xl font-mono font-bold tracking-tight bg-gradient-to-r from-[#16f2b3] via-cyan-300 to-[#8b5cf6] bg-clip-text text-transparent">
+                          &lt;TH/&gt;
+                        </span>
+                      </div>
+                      <span className="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-full bg-[#0d1224] border border-[#16f2b3]/80 text-[10px] font-mono text-[#16f2b3] font-semibold">
+                        CSE '27
+                      </span>
+                    </div>
+
+                    <h4 className="text-lg font-bold text-white mb-1">Md. Tanvir Hossain</h4>
+                    <p className="text-xs font-mono text-[#16f2b3] mb-2">Competitive Programmer & Developer</p>
+                    <p className="text-[11px] text-slate-400 max-w-[220px] leading-relaxed">
+                      Daffodil International University · 2nd Year
+                    </p>
+                  </div>
+
                   {/* Gradient shadow overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#10172d] via-transparent to-transparent opacity-80 pointer-events-none z-10" />
                   
