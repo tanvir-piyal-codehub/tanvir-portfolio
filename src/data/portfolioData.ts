@@ -1,3 +1,8 @@
+import gridwiseImg from '../assets/images/project_gridwise_preview_1790621159195.jpg';
+import orderManagementImg from '../assets/images/project_c_order_management_1790621173337.jpg';
+import treasureHunterImg from '../assets/images/project_treasure_hunter_dp_1790622725593.jpg';
+import portfolioPreviewImg from '../assets/images/portfolio_tanvir_preview_1790622316236.jpg';
+
 export interface ProjectItem {
   id: string;
   title: string;
@@ -127,7 +132,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     technologies: ["React", "JavaScript", "AI/API integration", "CSS3"],
     liveDemoUrl: "https://bup-hackathon-project.vercel.app/",
     githubUrl: "https://github.com/tanvir-piyal-codehub/GridWise",
-    image: "/src/assets/images/project_gridwise_preview_1790621159195.jpg",
+    image: gridwiseImg,
     category: "Hackathon",
     isFeatured: true,
   },
@@ -147,7 +152,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     ],
     technologies: ["C", "Data Structures", "Structs & Arrays", "CLI", "GCC"],
     githubUrl: "https://github.com/tanvir-piyal-codehub/E-Commerce-Order-Processing-System",
-    image: "/src/assets/images/project_c_order_management_1790621173337.jpg",
+    image: orderManagementImg,
     category: "Software Engineering",
     isFeatured: true,
   },
@@ -165,7 +170,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     ],
     technologies: ["C", "Dynamic Programming", "Algorithms", "2D Grid Math", "GCC"],
     githubUrl: "https://github.com/tanvir-piyal-codehub/treasure--hunter--grid--dp",
-    image: "/src/assets/images/project_treasure_hunter_dp_1790622725593.jpg",
+    image: treasureHunterImg,
     category: "Software Engineering",
     isFeatured: true,
   },
@@ -182,9 +187,9 @@ export const PROJECTS_DATA: ProjectItem[] = [
       "Smooth section transitions, direct email communication flow, and accessible semantic markup",
     ],
     technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-    liveDemoUrl: "https://tanvir-portfolio.vercel.app",
+    liveDemoUrl: "https://tanvir-portfolio-gttv.vercel.app",
     githubUrl: "https://github.com/tanvir-piyal-codehub/tanvir-portfolio",
-    image: "/src/assets/images/portfolio_tanvir_preview_1790622316236.jpg",
+    image: portfolioPreviewImg,
     category: "Web Development",
     isFeatured: true,
   },

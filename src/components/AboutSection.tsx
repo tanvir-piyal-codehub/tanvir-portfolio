@@ -38,6 +38,12 @@ export const AboutSection: React.FC = () => {
                     alt="Md. Tanvir Hossain - Computer Science & Engineering Student"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 relative z-10"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.src.includes('tanvir_official_photo.jpg') && !target.src.includes('tanvir_photo.jpg')) {
+                        target.src = '/tanvir_official_photo.jpg';
+                      }
+                    }}
                   />
                   
                   {/* Gradient shadow overlay */}

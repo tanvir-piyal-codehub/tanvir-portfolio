@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
+import defaultPhoto from '../assets/images/tanvir_official_photo.jpg';
 
 // Default to Tanvir's real GitHub profile photo
-const DEFAULT_PHOTO = '/src/assets/images/tanvir_official_photo.jpg';
+const DEFAULT_PHOTO = defaultPhoto;
 
 interface ProfilePhotoContextType {
   photoUrl: string;
@@ -21,7 +22,10 @@ export const ProfilePhotoProvider: React.FC<{ children: React.ReactNode }> = ({ 
   const [photoUrl, setPhotoUrl] = useState<string>(() => {
     try {
       const saved = localStorage.getItem('tanvir_custom_profile_photo');
-      return saved || DEFAULT_PHOTO;
+      if (saved && (saved.startsWith('data:image/') || saved.startsWith('http'))) {
+        return saved;
+      }
+      return DEFAULT_PHOTO;
     } catch {
       return DEFAULT_PHOTO;
     }
@@ -29,7 +33,8 @@ export const ProfilePhotoProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
   const [isCustom, setIsCustom] = useState<boolean>(() => {
     try {
-      return Boolean(localStorage.getItem('tanvir_custom_profile_photo'));
+      const saved = localStorage.getItem('tanvir_custom_profile_photo');
+      return Boolean(saved && (saved.startsWith('data:image/') || saved.startsWith('http')));
     } catch {
       return false;
     }
